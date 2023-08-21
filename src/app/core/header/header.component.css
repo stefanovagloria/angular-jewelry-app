@@ -18,6 +18,7 @@
   .header a.logo {
     font-size: 25px;
     font-weight:bolder;
+    border: 1px black;
   }
 
   @media screen and (max-width: 500px) {

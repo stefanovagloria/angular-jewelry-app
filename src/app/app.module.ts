@@ -12,6 +12,28 @@ import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
 
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDvcSZYc_Ions6pqbSVI51sRtwqHoZDl2k",
+
+  authDomain: "jewelry-app-550f2.firebaseapp.com",
+
+  projectId: "jewelry-app-550f2",
+
+  storageBucket: "jewelry-app-550f2.appspot.com",
+
+  messagingSenderId: "776564391858",
+
+  appId: "1:776564391858:web:9199f2cb4c4ded1e772eab",
+
+  measurementId: "G-N5GCH9PTY9"
+
+};
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +48,9 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]
