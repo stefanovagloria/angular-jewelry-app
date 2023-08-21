@@ -1,0 +1,10 @@
+.footer {
+    float:left;
+    color: rgb(2, 75, 2);
+    text-align: center;
+    padding: 20px;
+    text-decoration:solid ;
+    font-size: 25px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
