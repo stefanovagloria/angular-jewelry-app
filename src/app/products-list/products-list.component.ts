@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Product } from '../interfaces/product';
+
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
@@ -7,11 +9,17 @@ import { Component } from '@angular/core';
 })
 export class ProductsListComponent {
 
-  products: [] = [
+  products: Product[] = [
+    {
+      productName: 'Bracelet',
+      price: 45,
+      category: 'Silver'
+    },
     {
       productName: 'Earrings',
-
-    }
-  ];
+      price: 50,
+      category: 'Gold'
+    },
+  ]
  
 }

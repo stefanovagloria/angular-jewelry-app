@@ -5,6 +5,9 @@ import { ProductsListComponent } from './products-list/products-list.component';
 const routes: Routes = [
   {
     path: 'products', component: ProductsListComponent
+  },
+  {
+    path: 'gallery', 
   }
 ];
 
@@ -13,3 +16,9 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+/* <a class="active" routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/products" routerLinkActive="active">Products </a>
+      <a routerLink="/gallery" routerLinkActive="active">Gallery </a>
+      <a routerLink="/about" routerLinkActive="active">About us</a>
+      <a routerLink="/contacts" routerLinkActive="active">Contact us</a>*/
