@@ -9,5 +9,5 @@ import { Product } from '../interfaces/product';
 })
 export class ProductItemComponent {
 
-  @Input() items?: Product[];
+  @Input() items?:any[];
 }
