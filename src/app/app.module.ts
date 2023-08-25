@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ProductsListComponent } from './products-list/products-list.component';
@@ -48,6 +49,7 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     CoreModule,
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
