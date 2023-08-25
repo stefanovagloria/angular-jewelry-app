@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { ProductEditorComponent } from './product-editor/product-editor.component';
 
 const firebaseConfig = {
 
@@ -44,7 +45,8 @@ const firebaseConfig = {
     GalleryComponent,
     AboutComponent,
     ContactsComponent,
-    HomeComponent
+    HomeComponent,
+    ProductEditorComponent
   ],
   imports: [
     BrowserModule,
