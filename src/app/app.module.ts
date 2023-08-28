@@ -21,8 +21,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { SignInComponent } from './authentication/sign-in/sign-in.component';
-import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDvcSZYc_Ions6pqbSVI51sRtwqHoZDl2k',
@@ -51,8 +49,6 @@ const firebaseConfig = {
     ContactsComponent,
     HomeComponent,
     ProductEditorComponent,
-    SignInComponent,
-    SignUpComponent,
   ],
   imports: [
     BrowserModule,
