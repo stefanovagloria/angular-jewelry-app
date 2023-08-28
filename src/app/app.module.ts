@@ -21,6 +21,14 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AuthService } from './shared/services/auth.service';
+
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDvcSZYc_Ions6pqbSVI51sRtwqHoZDl2k',
@@ -49,20 +57,27 @@ const firebaseConfig = {
     ContactsComponent,
     HomeComponent,
     ProductEditorComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     CoreModule,
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    ButtonModule,
+    CardModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
     provideFirestore(() => getFirestore()),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
