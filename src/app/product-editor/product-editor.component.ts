@@ -23,5 +23,7 @@ export class ProductEditorComponent {
       price: Number(this.productForm.value.price),
       category: this.productForm.value.category,
     });
+
+    this.productForm.patchValue({productName: '', price: '', category: ''});
   }
 }
