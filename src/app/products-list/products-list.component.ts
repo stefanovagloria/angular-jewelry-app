@@ -29,10 +29,6 @@ export class ProductsListComponent implements OnInit{
    this.apiService.getProducts().subscribe((value) => {
     console.log(value)
     this.products = value;
-   
-    for (const product of this.products) {
-      console.log(product.product.category)
-    }
    })
   }
 }
