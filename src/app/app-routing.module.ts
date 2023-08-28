@@ -5,30 +5,47 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', component: HomeComponent
+    path: '',
+    pathMatch: 'full',
+    component: HomeComponent,
   },
   {
-    path: 'products', component: ProductsListComponent
+    path: 'sign-in',
+    component: SignInComponent,
+  },
+
+  {
+    path: 'register-user',
+    component: SignUpComponent,
   },
   {
-    path: 'gallery', component: GalleryComponent
+    path: 'products',
+    component: ProductsListComponent,
   },
   {
-    path: 'about', component: AboutComponent
+    path: 'gallery',
+    component: GalleryComponent,
   },
   {
-    path: 'contacts', component: ContactsComponent
+    path: 'about',
+    component: AboutComponent,
+  },
+  {
+    path: 'contacts',
+    component: ContactsComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 /* <a class="active" routerLink="/home" routerLinkActive="active">Home</a>
       <a routerLink="/products" routerLinkActive="active">Products </a>

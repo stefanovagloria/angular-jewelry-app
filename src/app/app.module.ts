@@ -16,30 +16,29 @@ import { ProductEditorComponent } from './product-editor/product-editor.componen
 
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
 const firebaseConfig = {
+  apiKey: 'AIzaSyDvcSZYc_Ions6pqbSVI51sRtwqHoZDl2k',
 
-  apiKey: "AIzaSyDvcSZYc_Ions6pqbSVI51sRtwqHoZDl2k",
+  authDomain: 'jewelry-app-550f2.firebaseapp.com',
 
-  authDomain: "jewelry-app-550f2.firebaseapp.com",
+  projectId: 'jewelry-app-550f2',
 
-  projectId: "jewelry-app-550f2",
+  storageBucket: 'jewelry-app-550f2.appspot.com',
 
-  storageBucket: "jewelry-app-550f2.appspot.com",
+  messagingSenderId: '776564391858',
 
-  messagingSenderId: "776564391858",
+  appId: '1:776564391858:web:9199f2cb4c4ded1e772eab',
 
-  appId: "1:776564391858:web:9199f2cb4c4ded1e772eab",
-
-  measurementId: "G-N5GCH9PTY9"
-
+  measurementId: 'G-N5GCH9PTY9',
 };
-
 
 @NgModule({
   declarations: [
@@ -51,7 +50,9 @@ const firebaseConfig = {
     AboutComponent,
     ContactsComponent,
     HomeComponent,
-    ProductEditorComponent
+    ProductEditorComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +67,6 @@ const firebaseConfig = {
     AngularFireDatabaseModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
