@@ -20,6 +20,7 @@ export class AuthService {
   userData: any;
 
   constructor(
+   
     public afAuth: AngularFireAuth,
 
     public afs: AngularFirestore,

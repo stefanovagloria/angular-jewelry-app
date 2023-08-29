@@ -9,9 +9,6 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 
-import {Observable} from 'rxjs';
-
-import { Product } from './interfaces/product';
 
 @Injectable({
   providedIn: 'root',

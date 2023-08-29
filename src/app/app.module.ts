@@ -19,15 +19,17 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {  AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { AuthService } from './shared/services/auth.service';
 
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { ApiService } from './api.service';
+import { AuthService } from './shared/services/auth.service';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 const firebaseConfig = {
@@ -67,7 +69,8 @@ const firebaseConfig = {
     CoreModule,
     ButtonModule,
     CardModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    //AngularFireModule.initializeApp(firebaseConfig),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
     AngularFireDatabaseModule,
     provideFirestore(() => getFirestore()),
     AngularFireAuthModule,
@@ -76,7 +79,10 @@ const firebaseConfig = {
     AngularFireDatabaseModule,
   ],
   providers: [
-    AuthService
+    ApiService,
+    AuthService,
+    { provide: FIREBASE_OPTIONS, useValue: firebaseConfig }
+    //AngularFirestore
   ],
   bootstrap: [AppComponent],
 })
