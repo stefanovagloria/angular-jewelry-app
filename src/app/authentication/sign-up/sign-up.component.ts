@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  signUp(){
+  signup(){
     if(this.signupForm.valid){
       this.authService.SignUp(
         this.signupForm.value.email,
