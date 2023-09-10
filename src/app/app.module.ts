@@ -25,8 +25,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { ApiService } from './api.service';
 import { AuthService } from './shared/services/auth.service';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
@@ -67,8 +65,6 @@ const firebaseConfig = {
     AppRoutingModule,
     ReactiveFormsModule,
     CoreModule,
-    ButtonModule,
-    CardModule,
     //AngularFireModule.initializeApp(firebaseConfig),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     AngularFireDatabaseModule,
