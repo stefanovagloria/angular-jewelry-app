@@ -1,0 +1,30 @@
+.loginForm {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.loginForm h1 {
+    text-align: center;
+}
+
+.loginForm label,
+.loginForm input {
+    display: block;
+}
+
+.loginForm label {
+    font-weight: bold;
+}
+
+.loginForm input {
+    padding: 7px;
+    margin-top: 4px;
+    border: solid 1px;
+    border-radius: 0.7em;
+}
+
+button {
+    font-size: 20px;
+    padding: 7px;
+    border-radius: 0.7em;
+}
