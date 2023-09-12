@@ -1,0 +1,16 @@
+<section>
+    <h1>LogIn</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit">
+        <p>
+            <label>Email:</label>
+            <input type="text" formControlName="email"/>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="text" formControlName="password"/>
+        </p>
+        <p>
+            <button type="submit" [disabled]="!form.valid">Submit</button>
+        </p>
+    </form>
+</section>

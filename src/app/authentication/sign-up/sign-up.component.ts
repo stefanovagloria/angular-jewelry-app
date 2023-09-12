@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  signupForm: FormGroup;
+  form: FormGroup;
 
   constructor(private authService: AuthService) {}
 
@@ -17,22 +17,18 @@ export class SignUpComponent implements OnInit {
   }
 
   createForm() {
-    this.signupForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-
-      password: new FormControl('', Validators.required),
-
-      confirmPassword: new FormControl('', Validators.required),
-
-      displayName: new FormControl('', Validators.required),
+    this.form = new FormGroup({
+      "email": new FormControl("", Validators.required),
+      "password": new FormControl("", [Validators.required, Validators.minLength(4)]),
+      "rePassword": new FormControl("", [Validators.required, Validators.minLength(4)])
     });
   }
 
-  signup(){
-    if(this.signupForm.valid){
+  onSubmit(){
+    if(this.form.valid){
       this.authService.SignUp(
-        this.signupForm.value.email,
-        this.signupForm.value.password
+        this.form.value.email,
+        this.form.value.password
       )
     }
   }
