@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-product-editor',
