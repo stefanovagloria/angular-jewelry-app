@@ -2,6 +2,8 @@ import { Injectable, NgZone } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
+import { Subject, ReplaySubject, Observable } from 'rxjs';
+
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -17,16 +19,13 @@ import { GoogleAuthProvider } from 'firebase/auth';
   providedIn: 'root',
 })
 export class AuthService {
+  private loggedIn: Subject<boolean> = new ReplaySubject<boolean>(1);
   userData: any;
 
   constructor(
-   
     public afAuth: AngularFireAuth,
-
     public afs: AngularFirestore,
-
     public ngZone: NgZone,
-
     public router: Router
   ) {
     /* Saving user data in localstorage when
@@ -54,7 +53,9 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
 
       .then((result) => {
+        console.log(result.user);
         this.SetUserData(result.user);
+        this.loggedIn.next(true);
 
         this.afAuth.authState.subscribe((user) => {
           if (user) {
@@ -70,9 +71,7 @@ export class AuthService {
 
   SignUp(email: string, password: string) {
     return this.afAuth
-
       .createUserWithEmailAndPassword(email, password)
-
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign
 
@@ -145,6 +144,7 @@ export class AuthService {
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
 
   SetUserData(user: any) {
+    console.log(user);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -170,7 +170,12 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
 
-      this.router.navigate(['sign-in']);
+      this.loggedIn.next(false);
+      this.router.navigate(['/']);
     });
+  }
+
+  loginStatusChange(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 }

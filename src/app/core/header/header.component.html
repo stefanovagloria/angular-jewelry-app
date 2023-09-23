@@ -7,9 +7,12 @@
     <a routerLink="/gallery" routerLinkActive="active">Gallery </a>
     <a routerLink="/about" routerLinkActive="active">About us</a>
     <a routerLink="/contacts" routerLinkActive="active">Contact us</a>
-    <div class="authButtons">
+    <div *ngIf="!isLoggedIn" class="authButtons">
       <a routerLink="/sign-in" routerLinkActive="active">Login</a>
       <a routerLink="/register-user" routerLinkActive="active">Register</a>
+    </div>
+    <div *ngIf="isLoggedIn"  class="authButtons">
+      <a (click)="logOut()">Logout</a>
     </div>
   </div>
 </div>

@@ -18,7 +18,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { ApiService } from './api.service';
-import { AuthService } from './shared/services/auth.service';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 const firebaseConfig = {
@@ -54,7 +53,6 @@ const firebaseConfig = {
   ],
   providers: [
     ApiService,
-    AuthService,
     { provide: FIREBASE_OPTIONS, useValue: firebaseConfig },
   ],
   bootstrap: [AppComponent],
