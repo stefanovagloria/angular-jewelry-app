@@ -28,7 +28,6 @@ export class ApiService {
 
   getProducts() {
     let productsCollection = collection(this.fs, 'products');
-    console.log(collectionData(productsCollection))
     return collectionData(productsCollection, { idField: 'id'});
   }
 
