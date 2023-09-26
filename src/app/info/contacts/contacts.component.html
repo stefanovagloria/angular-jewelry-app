@@ -1,1 +1,22 @@
-<p>contacts works!</p>
+<h1 class="title">CONTACT US</h1>
+<div>
+  <p>
+    Google Maps Platform rejected your request. This API project is not
+    authorized to use this API.
+  </p>
+  <form [formGroup]="contactForm">
+    <input id="name" type="text" placeholder="Name" formControlName="name" />
+
+    <input id="email" type="text" placeholder="Email" formControlName="email" />
+
+    <input id="phone" type="text" placeholder="Phone" formControlName="phone" />
+
+    <input
+      id="message"
+      type="text"
+      placeholder="Message"
+      formControlName="message"
+    />
+    <button>SEND</button>
+  </form>
+</div>

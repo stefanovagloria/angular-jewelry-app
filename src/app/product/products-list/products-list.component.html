@@ -1,3 +1,5 @@
-<h3>Products</h3>
-<app-product-item [items]="products" />
-<app-product-editor>
+<h1 class="title">LATEST PRODUCTS</h1>
+<div class="container" *ngFor="let product of products">
+  <app-product-item [item]="product" />
+</div>
+<app-product-editor/>

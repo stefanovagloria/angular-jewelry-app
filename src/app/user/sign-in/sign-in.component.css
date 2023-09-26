@@ -10,6 +10,7 @@
 .loginForm label,
 .loginForm input {
     display: block;
+    color:rgb(188, 158, 113) ;
 }
 
 .loginForm label {
