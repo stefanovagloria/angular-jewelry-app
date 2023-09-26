@@ -8,6 +8,7 @@ import { ApiService } from '../../api.service';
   styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent implements OnInit {
+  isDataLoaded: boolean = false;
   products?: any[];
 
   constructor(private apiService: ApiService) {}
@@ -15,7 +16,9 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getProducts().subscribe((value) => {
       this.products = value;
+      this.isDataLoaded = true;
     });
+
   }
 
   addData() {

@@ -1,11 +1,22 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-  <label for="productName">Product Name: </label>
-  <input id="productName" type="text" formControlName="productName" />
+<h1 class="title">Add New Product</h1>
+<div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <input
+      id="productName"
+      type="text"
+      placeholder="Product name"
+      formControlName="productName"
+    />
 
-  <label for="price">Price: </label>
-  <input id="price" type="text" formControlName="price" />
+    <input id="price" type="text" placeholder="Price" formControlName="price" />
 
-  <label for="category">Category: </label>
-  <input id="category" type="text" formControlName="category" />
-  <button type="submit">Add product</button>
-</form>
+    <input
+      id="category"
+      type="text"
+      placeholder="Category"
+      formControlName="category"
+    />
+
+    <button type="submit">SEND</button>
+  </form>
+</div>

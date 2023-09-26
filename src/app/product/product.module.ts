@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductEditorComponent } from './product-editor/product-editor.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { ProductsListComponent } from './products-list/products-list.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     ProductEditorComponent,

@@ -1,6 +1,14 @@
+.container {
+    display: inline-block;
+    margin: 20px;
+    padding: 30px;
+    justify-content: space-evenly;
+}
+
 .title {
     text-align: center;
     margin: 30px;
     padding: 50px;
     line-height: 10%;
 }
+

@@ -1,16 +1,13 @@
-<div class="container">
-    <div class="box">
-      <a href="httboxps://www.free-css.com/free-css-templates">
-        <div class="img-box">
-          <img src="" alt="website template image" />
-        </div>
-        <div class="detail-box">
-          <h6>{{ item.productName }}</h6>
-          <h6>
-            Price<span>${{ item.price }}</span>
-          </h6>
-        </div>
-        <div class="new"><span>New</span></div>
-      </a>
+<article class="box">
+  <a href="httboxps://www.free-css.com/free-css-templates">
+    <div class="img-box">
+      <img src="" alt="NO IMAGE" />
     </div>
-</div>
+    <div class="detail-box">
+      <h6>{{ item.product.productName }}</h6>
+      <h6>
+        Price<span>${{ item.product.price }}</span>
+      </h6>
+    </div>
+  </a>
+</article>

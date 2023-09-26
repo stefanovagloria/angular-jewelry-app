@@ -1,5 +1,11 @@
 <h1 class="title">LATEST PRODUCTS</h1>
-<div class="container" *ngFor="let product of products">
-  <app-product-item [item]="product" />
-</div>
-<app-product-editor/>
+<ng-container *ngIf="!isDataLoaded">
+  <app-loader />
+</ng-container>
+<ng-container *ngIf="isDataLoaded">
+  <div class="container" *ngFor="let product of products">
+    <app-product-item [item]="product" />
+  </div>
+</ng-container>
+
+<app-product-editor />
