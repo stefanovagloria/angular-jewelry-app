@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { InfoRoutingModule } from './info-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +15,11 @@ import { ContactsComponent } from './contacts/contacts.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
+  ],
+  exports: [
+    InfoRoutingModule
   ]
 })
 export class InfoModule { }

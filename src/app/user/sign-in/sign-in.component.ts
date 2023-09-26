@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     console.log('Login..');
     if (this.form.valid) {
-      this.authService.SignIn(this.form.value.email, this.form.value.password);
+      this.authService.SignIn(this.form.value.email, this.form.value.password)
     }
   }
 }

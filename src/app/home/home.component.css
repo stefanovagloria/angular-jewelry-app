@@ -31,3 +31,8 @@ img {
     margin-top: 25px;
     text-transform: uppercase;
 }
+
+.contactBtn:hover{
+    color: white;
+    background-color: rgb(188, 158, 113);
+}
