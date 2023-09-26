@@ -5,7 +5,7 @@ form {
     margin-top: 100px;
 }
 
-form>input{
+input{
    display: block;
    text-align: 'left';
    width: 300px;

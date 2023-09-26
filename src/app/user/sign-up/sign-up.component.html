@@ -1,20 +1,17 @@
-<section class="registerForm">
-    <h1>Register:</h1>
+<h1 class="title">REGISTER</h1>
+<div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <p>
-            <label>Email:</label>
-            <input type="text" formControlName="email">
+            <input type="text" placeholder="Email" formControlName="email">
         </p>
         <p>
-            <label>Password:</label>
-            <input type="password" formControlName="password">
+            <input type="password" placeholder="Password" formControlName="password">
         </p>
         <p>
-            <label>Repeat password:</label>
-            <input type="password" formControlName="rePassword">
+            <input type="password" placeholder="Repeat password" formControlName="rePassword">
         </p>
         <p>
             <button type="submit" [disabled]="!form.valid">Submit</button>
         </p>
     </form>
-</section>
+</div>

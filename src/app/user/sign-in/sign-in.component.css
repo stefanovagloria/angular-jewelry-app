@@ -1,16 +1,36 @@
-.loginForm {
-    max-width: 400px;
-    margin: 0 auto;
+div {
+    border: 1px solid gainsboro;
+    margin: 30px;
+    padding-bottom: 40px;
 }
 
-.loginForm h1 {
-    text-align: center;
+form {
+    width: 250px;
+    text-align: right;
+    margin-left: 1000px;
+    margin-top: 100px;
 }
 
-.loginForm label,
-.loginForm input {
+input{
     display: block;
-    color:rgb(188, 158, 113) ;
+    text-align: 'left';
+    width: 300px;
+    padding: 15px;
+    margin: 15px;
+ }
+
+ .title {
+    text-align: left;
+    margin-left: 30px;
+}
+
+
+input {
+    display: block;
+    text-align: 'left';
+   width: 300px;
+   padding: 15px;
+   margin: 15px;
 }
 
 .loginForm label {
@@ -25,7 +45,10 @@
 }
 
 button {
-    font-size: 20px;
-    padding: 7px;
-    border-radius: 0.7em;
+    width: 120px;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    font-size: larger;
+    background-color: rgb(188, 158, 113);
 }

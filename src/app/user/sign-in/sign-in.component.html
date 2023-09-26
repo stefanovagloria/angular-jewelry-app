@@ -1,16 +1,14 @@
-<section class="loginForm">
-    <h1>LogIn</h1>
+<h1 class="title">LogIn</h1>
+<div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <p>
-            <label>Email:</label>
-            <input type="text" formControlName="email"/>
+            <input type="text" placeholder="Email" formControlName="email"/>
         </p>
         <p>
-            <label>Password:</label>
-            <input type="text" formControlName="password"/>
+            <input type="password" placeholder="Password" formControlName="password"/>
         </p>
         <p>
             <button type="submit" [disabled]="!form.valid">Submit</button>
         </p>
     </form>
-</section>
+</div>
