@@ -7,8 +7,11 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  getDoc,
 } from '@angular/fire/firestore';
 
+import { Product } from './product/product';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,16 +22,20 @@ export class ApiService {
   addProduct(prod: object) {
     let currentProduct = { product: prod };
     let productsCollection = collection(this.fs, 'products');
-     addDoc(productsCollection, currentProduct).then(()=> {
-      console.log('Created product!')
-     }).catch((err) => {
-      console.log(err);
-     })
+    addDoc(productsCollection, currentProduct)
+      .then(() => {
+        console.log('Created product!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   getProducts() {
     let productsCollection = collection(this.fs, 'products');
-    return collectionData(productsCollection, { idField: 'id'});
+    return collectionData(productsCollection, { idField: 'id' });
+
+    //, { idField: 'id'}
   }
 
   updateProduct(
@@ -45,5 +52,22 @@ export class ApiService {
   deleteProduct(id: string) {
     let docRef = doc(this.fs, `products/${id}`);
     return deleteDoc(docRef);
+  }
+
+  async getProductById(id: string) {
+    console.log(id)
+    const docRef = doc(this.fs, `products/${id}`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+
+      let productObj = docSnap.data();
+      return productObj;
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+      return undefined;
+    }
   }
 }

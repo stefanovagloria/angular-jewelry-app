@@ -5,6 +5,8 @@ import { ProductEditorComponent } from './product-editor/product-editor.componen
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 
@@ -12,12 +14,14 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ProductEditorComponent,
     ProductItemComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     ProductEditorComponent,
