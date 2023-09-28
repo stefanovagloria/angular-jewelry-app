@@ -18,7 +18,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'products/make-order',
+    path: 'make-order',
     component: OrderComponent,
   },
 ];

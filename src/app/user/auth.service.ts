@@ -1,24 +1,28 @@
 import { Injectable, NgZone } from '@angular/core';
-
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-
+import { Router } from '@angular/router';
 import { Subject, ReplaySubject, Observable } from 'rxjs';
 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 
-import { Router } from '@angular/router';
-
 import { User } from './user';
-
-import { GoogleAuthProvider } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
+
+  user: User | undefined;
+
+  get isLoggedIn(): boolean{
+    return !!this.user;
+  }
+
   private loggedIn: Subject<boolean> = new ReplaySubject<boolean>(1);
   userData: any;
 
@@ -28,23 +32,16 @@ export class AuthService {
     public ngZone: NgZone,
     public router: Router
   ) {
-    /* Saving user data in localstorage when
 
-    logged in and setting up null when logged out */
+    try {
+      const lsUser = localStorage.getItem('user') || '';
 
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
+      this.user = JSON.parse(lsUser);
+    } catch (error) {
+      this.user = undefined;
+    }
 
-        localStorage.setItem('user', JSON.stringify(this.userData));
-
-        JSON.parse(localStorage.getItem('user')!);
-      } else {
-        localStorage.setItem('user', 'null');
-
-        JSON.parse(localStorage.getItem('user')!);
-      }
-    });
+   
   } // Sign in with email/password
 
   SignIn(email: string, password: string) {
@@ -54,8 +51,11 @@ export class AuthService {
 
       .then((result) => {
         console.log(result.user);
-        this.SetUserData(result.user);
+        this.SetUserData(result.user)
         this.loggedIn.next(true);
+        localStorage.setItem('user', (JSON.stringify(result.user)));
+
+        this.router.navigate(['/']);
 
         this.afAuth.authState.subscribe((user) => {
           if (user) {
@@ -111,10 +111,10 @@ export class AuthService {
       });
   } // Returns true when user is looged in and email is verified
 
-  get isLoggedIn(): boolean {
+  get isLogged(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
 
-    return user !== null && user.emailVerified !== false ? true : false;
+   return user !== null  ? true : false;
   } // Sign in with Google
 
   GoogleAuth() {
@@ -160,6 +160,8 @@ export class AuthService {
 
       emailVerified: user.emailVerified,
     };
+
+  
 
     return userRef.set(userData, {
       merge: true,
