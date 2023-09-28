@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AboutComponent, ContactsComponent],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  exports: [InfoRoutingModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, InfoRoutingModule],
+  exports: [],
 })
 export class InfoModule {}

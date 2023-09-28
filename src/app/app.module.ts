@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { InfoModule } from './info/info.module';
 
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -41,8 +42,8 @@ const firebaseConfig = {
     AppRoutingModule,
     CoreModule,
     UserModule,
-    ProductModule,
     InfoModule,
+    ProductModule,
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     AngularFireDatabaseModule,
     provideFirestore(() => getFirestore()),
