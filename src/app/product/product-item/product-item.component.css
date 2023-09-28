@@ -2,9 +2,24 @@
 .box {
   display: inline-block;
   border: 1px solid rgb(188, 158, 113);
-  padding: 1rem 1rem;
+  padding: 5px;
+  margin-top: 20px;
   vertical-align: middle;
-  width: 200px;
+  width: 250px;
   text-align: center;
   justify-content: space-evenly;
+}
+
+img {
+  width: 70%;
+}
+
+a {
+  text-decoration: none;
+}
+
+span {
+  padding: 18px;
+  font-size: larger;
+  color: black;
 }

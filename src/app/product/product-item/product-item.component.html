@@ -1,13 +1,13 @@
 <article class="box">
   <a [routerLink]="['/products', 'detail', item.id]">
     <div class="img-box">
-      <img src="" alt="NO IMAGE" />
+      <img src="../../../assets/381074000_781201344013814_821133475041912350_n.jpg" alt="NO IMAGE" />
     </div>
     <div class="detail-box">
-      <h6>{{ item.product.productName }}</h6>
-      <h6>
-        Price<span>${{ item.product.price }}</span>
-      </h6>
+      <span>{{ item.product.productName }}</span>
+      <span>
+        Price${{ item.product.price }}
+      </span>
     </div>
   </a>
 </article>
