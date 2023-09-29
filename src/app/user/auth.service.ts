@@ -23,6 +23,11 @@ export class AuthService {
     return !!this.user;
   }
 
+  getCurrentUser(){
+    let user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user;
+  }
+
   private loggedIn: Subject<boolean> = new ReplaySubject<boolean>(1);
   userData: any;
 
@@ -42,15 +47,10 @@ export class AuthService {
     }
 
    
-  } // Sign in with email/password
+  } 
 
   SignIn(email: string, password: string) {
-    return this.afAuth
-
-      .signInWithEmailAndPassword(email, password)
-
-      .then((result) => {
-        console.log(result.user);
+    return this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.SetUserData(result.user)
         this.loggedIn.next(true);
         localStorage.setItem('user', (JSON.stringify(result.user)));
@@ -63,29 +63,23 @@ export class AuthService {
           }
         });
       })
-
       .catch((error) => {
         window.alert(error.message);
       });
-  } // Sign up with email/password
-
+  } 
+  
+  // Sign up with email/password & Send email verfificaiton when new user sign up
   SignUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign
-
-        up and returns promise */
-
         this.SendVerificationMail();
-
         this.SetUserData(result.user);
       })
-
       .catch((error) => {
         window.alert(error.message);
       });
-  } // Send email verfificaiton when new user sign up
+  } 
 
   SendVerificationMail() {
     return this.afAuth.currentUser

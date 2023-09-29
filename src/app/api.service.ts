@@ -8,10 +8,12 @@ import {
   deleteDoc,
   updateDoc,
   getDoc,
+  arrayUnion,
 } from '@angular/fire/firestore';
 
 import { Product } from './product/product';
 import { Subject } from 'rxjs';
+import { setDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -55,19 +57,26 @@ export class ApiService {
   }
 
   async getProductById(id: string) {
-    console.log(id)
+    console.log(id);
     const docRef = doc(this.fs, `products/${id}`);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      console.log('Document data:', docSnap.data());
 
       let productObj = docSnap.data();
       return productObj;
     } else {
       // docSnap.data() will be undefined in this case
-      console.log("No such document!");
+      console.log('No such document!');
       return undefined;
     }
+  }
+
+  async addProductsToUserCard(userId: string, product: object) {
+    const userRef = doc(this.fs, 'users', userId);
+
+    // Set the "capital" field of the city 'DC'
+    await setDoc(userRef, {products: arrayUnion(product)}, { merge: true });
   }
 }

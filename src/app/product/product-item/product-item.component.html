@@ -1,4 +1,5 @@
 <article class="box">
+  <button (click)="addToShoppingCard(item.id, item.product.productName,item.product.price, item.product.category)">BUY</button>
   <a [routerLink]="['/products', 'detail', item.id]">
     <div class="img-box">
       <img src="../../../assets/381074000_781201344013814_821133475041912350_n.jpg" alt="NO IMAGE" />
