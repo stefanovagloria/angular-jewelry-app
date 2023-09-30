@@ -1,11 +1,23 @@
-.footer {
-    float:left;
-    color: rgb(188, 158, 113);
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    text-decoration:solid ;
-    font-size: 25px;
-    line-height: 25px;
-    border-radius: 4px;
-  }
+
+
+.footerContainer>div{
+ display: inline-block;
+ max-width: 25%;
+ padding: 2.5%;
+ color: rgb(188, 158, 113);
+ font-size: larger;
+}
+
+.copyright {
+  text-align: center;
+  color: rgb(188, 158, 113);
+  font-size: larger;
+}
+
+input, button{
+  display: block;
+  padding: 5px;
+  margin:2px
+}
+
+

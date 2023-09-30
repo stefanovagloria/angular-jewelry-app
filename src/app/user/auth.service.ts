@@ -19,16 +19,29 @@ export class AuthService {
 
   user: User | undefined;
 
-  get isLoggedIn(): boolean{
-    return !!this.user;
+  isLoggedInUser(): boolean{
+
+    if(localStorage.length >0){
+      let user = JSON.parse(localStorage.getItem('user') || '');
+      console.log(user)
+      if(user === ''){
+        return false;
+      }else {
+        return true;
+      }
+    }
+
+    return false;
+    
   }
 
   getCurrentUser(){
-    let user = JSON.parse(localStorage.getItem('user') || '{}');
+    let user = JSON.parse(localStorage.getItem('user') || '');
+
     return user;
   }
 
-  private loggedIn: Subject<boolean> = new ReplaySubject<boolean>(1);
+  private loggedIn: Subject<boolean> = new ReplaySubject<boolean>();
   userData: any;
 
   constructor(
@@ -53,6 +66,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
         this.SetUserData(result.user)
         this.loggedIn.next(true);
+      
         localStorage.setItem('user', (JSON.stringify(result.user)));
 
         this.router.navigate(['/']);
@@ -166,7 +180,8 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
 
-      this.loggedIn.next(false);
+      this.loginStatusChange();
+      console.log('Logout')
       this.router.navigate(['/']);
     });
   }

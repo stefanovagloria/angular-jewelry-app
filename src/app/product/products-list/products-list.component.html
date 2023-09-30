@@ -3,7 +3,7 @@
   <app-loader />
 </ng-container>
 <ng-container *ngIf="isDataLoaded">
-  <div class="container" *ngFor="let product of products">
+  <div class="container" *ngFor="let product of products" >
     <app-product-item [item]="product" />
   </div>
 </ng-container>

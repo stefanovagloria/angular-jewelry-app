@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/user/auth.service';
 
@@ -10,16 +10,21 @@ import { AuthService } from 'src/app/user/auth.service';
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    console.log('Constructor: ', this.isLoggedIn)
+  }
 
   ngOnInit(): void {
+   
     this.authService.loginStatusChange().subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
+
+
   }
 
+
   logOut() {
-    console.log('Logout');
     this.authService.SignOut();
     this.router.navigate(['/']);
   }

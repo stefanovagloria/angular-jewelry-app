@@ -13,6 +13,11 @@
   img {
     width: 70%;
   }
+
+  img:hover {
+    width: 90%;
+  }
+
   
   a {
     text-decoration: none;
