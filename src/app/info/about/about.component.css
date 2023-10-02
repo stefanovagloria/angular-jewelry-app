@@ -1,0 +1,13 @@
+.container{
+    background-color : powderblue;
+    height : 50px;
+    width : 100%
+  }
+
+
+  @media (max-width: 400px){
+    .container{
+        display: none;
+    }
+
+}
