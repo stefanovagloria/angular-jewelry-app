@@ -18,7 +18,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 const firebaseConfig = {

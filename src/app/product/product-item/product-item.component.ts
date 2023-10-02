@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
-import { AuthService } from 'src/app/user/auth.service';
+import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-product-item',
@@ -8,11 +8,15 @@ import { AuthService } from 'src/app/user/auth.service';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
+
   @Input() item?: any;
+
 
   constructor(private authService: AuthService, private apiService: ApiService){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+   
+  }
 
   addToShoppingCard(
     id: string,

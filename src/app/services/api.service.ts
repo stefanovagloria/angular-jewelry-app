@@ -9,11 +9,13 @@ import {
   updateDoc,
   getDoc,
   arrayUnion,
+  arrayRemove,
 } from '@angular/fire/firestore';
 
-import { Product } from './product/product';
-import { Subject } from 'rxjs';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
 import { setDoc } from 'firebase/firestore';
+import { Product } from '../types/product';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +42,20 @@ export class ApiService {
     //, { idField: 'id'}
   }
 
+  async getProductById(id: string) {
+    const docRef = doc(this.fs, `products/${id}`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log('Document data:', docSnap.data());
+
+      let productObj = docSnap.data();
+      return productObj;
+    } else {
+      return undefined;
+    }
+  }
+
   updateProduct(
     productId: string,
     productName: string,
@@ -56,27 +72,28 @@ export class ApiService {
     return deleteDoc(docRef);
   }
 
-  async getProductById(id: string) {
-    console.log(id);
-    const docRef = doc(this.fs, `products/${id}`);
+  async addProductsToUserCard(userId: string, product: object) {
+    const userRef = doc(this.fs, 'users', userId);
+    await setDoc(userRef, { products: arrayUnion(product) }, { merge: true });
+  }
+
+  async getUserProducts(userId: string) {
+    const docRef = doc(this.fs, 'users', userId);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
-
-      let productObj = docSnap.data();
-      return productObj;
+      let productsForCurrentUser = docSnap.data()['products'];
+      return productsForCurrentUser;
     } else {
-      // docSnap.data() will be undefined in this case
       console.log('No such document!');
-      return undefined;
     }
   }
 
-  async addProductsToUserCard(userId: string, product: object) {
+  async deleteAddedProduct(userId: string, userProducts: Product[]) {
     const userRef = doc(this.fs, 'users', userId);
 
-    // Set the "capital" field of the city 'DC'
-    await setDoc(userRef, {products: arrayUnion(product)}, { merge: true });
+    await updateDoc(userRef, {
+      products: userProducts,
+    });
   }
 }

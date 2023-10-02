@@ -9,7 +9,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 
-import { User } from './user';
+import { User } from '../types/user';
 
 @Injectable({
   providedIn: 'root',
@@ -17,23 +17,10 @@ import { User } from './user';
 
 export class AuthService {
 
+
   user: User | undefined;
 
-  isLoggedInUser(): boolean{
-
-    if(localStorage.length >0){
-      let user = JSON.parse(localStorage.getItem('user') || '');
-      console.log(user)
-      if(user === ''){
-        return false;
-      }else {
-        return true;
-      }
-    }
-
-    return false;
-    
-  }
+  isLoggedInUser = false;
 
   getCurrentUser(){
     let user = JSON.parse(localStorage.getItem('user') || '');
@@ -68,6 +55,7 @@ export class AuthService {
         this.loggedIn.next(true);
       
         localStorage.setItem('user', (JSON.stringify(result.user)));
+        this.isLoggedInUser = true;
 
         this.router.navigate(['/']);
 

@@ -1,4 +1,6 @@
-
+.footerContainer{
+  margin-top: auto;
+}
 
 .footerContainer>div{
  display: inline-block;

@@ -1,14 +1,26 @@
 <article class="box">
-  <button (click)="addToShoppingCard(item.id, item.product.productName,item.product.price, item.product.category)">BUY</button>
+  <button
+    (click)="
+      addToShoppingCard(
+        item.id,
+        item.product.productName,
+        item.product.price,
+        item.product.category
+      )
+    "
+  >
+    BUY
+  </button>
   <a [routerLink]="['/products', 'detail', item.id]">
     <div class="img-box">
-      <img src="../../../assets/381074000_781201344013814_821133475041912350_n.jpg" alt="NO IMAGE" />
+      <img
+        src="../../../assets/381074000_781201344013814_821133475041912350_n.jpg"
+        alt="NO IMAGE"
+      />
     </div>
     <div class="detail-box">
       <span>{{ item.product.productName }}</span>
-      <span>
-        Price${{ item.product.price }}
-      </span>
+      <span> Price${{ item.product.price }} </span>
     </div>
   </a>
 </article>

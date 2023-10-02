@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { Product } from './product';
-import { ApiService } from '../api.service';
+import { Product } from '../types/product';
+import { ApiService } from '../services/api.service';
 
 @Injectable({ providedIn: 'root' })
 

@@ -10,7 +10,6 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
   },
-
   {
     path: 'gallery',
     component: GalleryComponent,

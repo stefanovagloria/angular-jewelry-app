@@ -9,7 +9,12 @@ img {
     border-radius: 10px;
 }
 
+.container {
+    display: flex;
+}
+
 .centered {
+    display: inline-block;
     position: absolute;
     top: 60%;
     left: 50%;
@@ -35,4 +40,11 @@ img {
 .contactBtn:hover{
     color: white;
     background-color: rgb(188, 158, 113);
+}
+
+@media screen and (min-width:800) and (max-width:1080) {
+    .container {
+        align-items: center;
+        justify-content: center;
+    }
 }
