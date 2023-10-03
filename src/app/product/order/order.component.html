@@ -2,7 +2,7 @@
   <div class="CartContainer">
     <div class="Header">
       <h3 class="Heading">Shopping Cart</h3>
-      <h5 class="Action">Remove all</h5>
+      <h5 class="Action" (click)="removeAllProducts()">Remove all</h5>
     </div>
 
     <ng-container *ngFor="let product of userProducts">
@@ -21,7 +21,7 @@
         </div>
         <div class="prices">
           <div class="amount">${{product.price}}</div>
-          <div class="remove" (click)="deleteProduct(product.id)"><u>Remove</u></div>
+          <div class="remove" (click)="removeProduct(product.id)"><u>Remove</u></div>
         </div>
       </div>
     </ng-container>

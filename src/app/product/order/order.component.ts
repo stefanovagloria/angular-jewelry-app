@@ -9,6 +9,7 @@ import { Product } from 'src/app/types/product';
 })
 export class OrderComponent implements OnInit {
   userProducts: Product[] = [];
+
   get totalAmount() {
     let sum = 0;
     this.userProducts.forEach((product) => (sum += product.price));
@@ -28,7 +29,7 @@ export class OrderComponent implements OnInit {
     this.userProducts = products;
   }
 
-  deleteProduct(productId: string) {
+  removeProduct(productId: string) {
     this.userProducts = this.userProducts.filter(
       (product) => product.id !== productId
     );
@@ -37,6 +38,11 @@ export class OrderComponent implements OnInit {
       'lSRy3MoP4gNlHaQwjmUbVzFN52I2',
       this.userProducts
     );
+  }
+
+  removeAllProducts(){
+    this.apiService.deleteAddedProduct('lSRy3MoP4gNlHaQwjmUbVzFN52I2', []);
+    this.userProducts = [];
   }
   
 }

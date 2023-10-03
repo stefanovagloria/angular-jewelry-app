@@ -12,7 +12,6 @@ import {
   arrayRemove,
 } from '@angular/fire/firestore';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import { setDoc } from 'firebase/firestore';
 import { Product } from '../types/product';
@@ -50,7 +49,7 @@ export class ApiService {
       console.log('Document data:', docSnap.data());
 
       let productObj = docSnap.data();
-      return productObj;
+      return productObj as Product;
     } else {
       return undefined;
     }
@@ -85,7 +84,7 @@ export class ApiService {
       let productsForCurrentUser = docSnap.data()['products'];
       return productsForCurrentUser;
     } else {
-      console.log('No such document!');
+      return undefined;
     }
   }
 
