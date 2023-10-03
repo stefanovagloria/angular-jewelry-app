@@ -7,14 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
-
   product: any = {};
-  
+
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(({product}) => 
-    this.product = product
-    
-  )}
+    this.activatedRoute.data.subscribe(
+      ({ product }) => (this.product = product)
+    );
+  }
 }
