@@ -21,6 +21,7 @@ export class ProductsListComponent implements OnInit {
   loadProducts() {
     this.apiService.getProducts().subscribe((value) => {
       this.products = value;
+      console.log(this.products)
       this.isDataLoaded = true;
     });
   }

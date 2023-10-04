@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, ReplaySubject, Observable } from 'rxjs';
+import { Subject, ReplaySubject, Observable, BehaviorSubject } from 'rxjs';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -17,15 +17,13 @@ import { User } from '../types/user';
 export class AuthService {
   user: User | undefined;
 
-  isLoggedInUser = false;
-
   getCurrentUser() {
     let user = JSON.parse(localStorage.getItem('user') || '');
 
     return user;
   }
 
-  private loggedIn: Subject<boolean> = new ReplaySubject<boolean>();
+  private loggedIn: Subject<boolean> = new BehaviorSubject<boolean>(true);
   userData: any;
 
   constructor(
@@ -34,12 +32,15 @@ export class AuthService {
     public ngZone: NgZone,
     public router: Router
   ) {
-    try {
-      const lsUser = localStorage.getItem('user') || '';
+  
+  }
 
-      this.user = JSON.parse(lsUser);
-    } catch (error) {
-      this.user = undefined;
+  checkForLoggedInUser(){
+    let user = localStorage.getItem('user');
+    if(user){
+      this.loggedIn.next(true);
+    } else{
+      this.loggedIn.next(false);
     }
   }
 
@@ -51,7 +52,6 @@ export class AuthService {
         this.loggedIn.next(true);
 
         localStorage.setItem('user', JSON.stringify(result.user));
-        this.isLoggedInUser = true;
 
         this.router.navigate(['/']);
 
@@ -161,6 +161,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
 
+      this.loggedIn.next(false);
       this.loginStatusChange();
       this.router.navigate(['/']);
     });

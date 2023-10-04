@@ -29,7 +29,7 @@ export class ApiService {
     );
   }
 
-  getProducts() {
+  getProducts():Observable<Product[]> {
     return this.http
       .get<{ [id: string]: Product }>(
         'https://jewelry-app-550f2-default-rtdb.firebaseio.com/products.json'
@@ -47,8 +47,10 @@ export class ApiService {
       );
   }
 
-  getProductById(id: string) {
-   return  this.http.get(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`)
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(
+      `https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`
+    );
   }
 
   updateProduct(
