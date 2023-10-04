@@ -27,9 +27,12 @@ export class SignInComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.authService.SignIn(this.form.value.email, this.form.value.password)
-
-      this.router.navigate(['/']);
+      this.authService.SignIn(this.form.value.email, this.form.value.password);
     }
+  }
+
+  resetPassword() {
+    let user = this.authService.getCurrentUser();
+    this.authService.ForgotPassword(user.email);
   }
 }

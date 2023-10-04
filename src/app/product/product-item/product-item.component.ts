@@ -1,22 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Product } from 'src/app/types/product';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css'],
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent {
 
   @Input() item?: any;
 
 
   constructor(private authService: AuthService, private apiService: ApiService){}
 
-  ngOnInit(): void {
-   
-  }
 
   addToShoppingCard(
     id: string,
@@ -29,7 +27,7 @@ export class ProductItemComponent implements OnInit {
 
     console.log(user.uid)
 
-    this.apiService.addProductsToUserCard(user.uid, {id, productName, price, category})
+    this.apiService.addProductsToUserCard(user.uid, {id, productName, price, category} as Product)
 
    
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -21,5 +21,6 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.authService.SignOut();
     this.router.navigate(['/']);
+    this.isLoggedIn = false;
   }
 }

@@ -2,40 +2,47 @@
   <div class="CartContainer">
     <div class="Header">
       <h3 class="Heading">Shopping Cart</h3>
-      <h5 class="Action" (click)="removeAllProducts()">Remove all</h5>
+      <h5 class="Action" *ngIf="userProducts.length >0" (click)="removeAllProducts()">Remove all</h5>
+    </div>
+    <div *ngIf="userProducts.length >0">
+      <ng-container *ngFor="let product of userProducts">
+        <div class="Cart-Items">
+          <div class="image-box">
+            <img src="" />
+          </div>
+          <div class="about">
+            <h1 class="title">{{ product.productName }}</h1>
+            <img src="" />
+          </div>
+          <div class="counter">
+            <div class="btn">+</div>
+            <div class="count">2</div>
+            <div class="btn">-</div>
+          </div>
+          <div class="prices">
+            <div class="amount">${{ product.price }}</div>
+            <div class="remove" (click)="removeProduct(product.id)">
+              <u>Remove</u>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <hr />
+      <div class="checkout">
+        <div class="total">
+          <div>
+            <div class="Subtotal">Total amount:</div>
+            <div class="items">{{ userProducts.length }} items</div>
+          </div>
+          <div class="total-amount">${{ totalAmount }}</div>
+        </div>
+        <button class="button">Checkout</button>
+      </div>
     </div>
 
-    <ng-container *ngFor="let product of userProducts">
-      <div class="Cart-Items">
-        <div class="image-box">
-          <img src="" />
-        </div>
-        <div class="about">
-          <h1 class="title">{{product.productName}}</h1>
-          <img src="" />
-        </div>
-        <div class="counter">
-          <div class="btn">+</div>
-          <div class="count">2</div>
-          <div class="btn">-</div>
-        </div>
-        <div class="prices">
-          <div class="amount">${{product.price}}</div>
-          <div class="remove" (click)="removeProduct(product.id)"><u>Remove</u></div>
-        </div>
-      </div>
-    </ng-container>
-
-    <hr />
-    <div class="checkout">
-      <div class="total">
-        <div>
-          <div class="Subtotal">Total amount:</div>
-          <div class="items">{{userProducts.length}} items</div>
-        </div>
-        <div class="total-amount">${{totalAmount}}</div>
-      </div>
-      <button class="button">Checkout</button>
+    <div *ngIf="userProducts.length === 0">
+      <div class="emptyCart">No added products!</div>
     </div>
   </div>
 </div>

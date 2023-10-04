@@ -40,9 +40,8 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  removeAllProducts(){
+  removeAllProducts() {
     this.apiService.deleteAddedProduct('lSRy3MoP4gNlHaQwjmUbVzFN52I2', []);
     this.userProducts = [];
   }
-  
 }

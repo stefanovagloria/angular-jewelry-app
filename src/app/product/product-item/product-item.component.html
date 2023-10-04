@@ -3,9 +3,9 @@
     (click)="
       addToShoppingCard(
         item.id,
-        item.product.productName,
-        item.product.price,
-        item.product.category
+        item.productName,
+        item.price,
+        item.category
       )
     "
   >
@@ -19,8 +19,8 @@
       />
     </div>
     <div class="detail-box">
-      <span>{{ item.product.productName }}</span>
-      <span> Price${{ item.product.price }} </span>
+      <span>{{ item.productName }}</span>
+      <span> Price${{ item.price }} </span>
     </div>
   </a>
 </article>

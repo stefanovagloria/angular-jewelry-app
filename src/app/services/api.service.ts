@@ -9,50 +9,46 @@ import {
   updateDoc,
   getDoc,
   arrayUnion,
-  arrayRemove,
 } from '@angular/fire/firestore';
-
 
 import { setDoc } from 'firebase/firestore';
 import { Product } from '../types/product';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private fs: Firestore) {}
+  constructor(private http: HttpClient, private fs: Firestore) {}
 
-  addProduct(prod: object) {
-    let currentProduct = { product: prod };
-    let productsCollection = collection(this.fs, 'products');
-    addDoc(productsCollection, currentProduct)
-      .then(() => {
-        console.log('Created product!');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  addProduct(product: {}) {
+    return this.http.post(
+      'https://jewelry-app-550f2-default-rtdb.firebaseio.com/products.json',
+      product
+    );
   }
 
   getProducts() {
-    let productsCollection = collection(this.fs, 'products');
-    return collectionData(productsCollection, { idField: 'id' });
+    return this.http
+      .get<{ [id: string]: Product }>(
+        'https://jewelry-app-550f2-default-rtdb.firebaseio.com/products.json'
+      )
+      .pipe(
+        map((productsAsJson) => {
+          let products: Product[] = [];
 
-    //, { idField: 'id'}
+          for (let id in productsAsJson) {
+            products.push({ ...productsAsJson[id], id });
+          }
+
+          return products;
+        })
+      );
   }
 
-  async getProductById(id: string) {
-    const docRef = doc(this.fs, `products/${id}`);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
-
-      let productObj = docSnap.data();
-      return productObj as Product;
-    } else {
-      return undefined;
-    }
+  getProductById(id: string) {
+   return  this.http.get(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`)
   }
 
   updateProduct(
@@ -66,12 +62,7 @@ export class ApiService {
     return;
   }
 
-  deleteProduct(id: string) {
-    let docRef = doc(this.fs, `products/${id}`);
-    return deleteDoc(docRef);
-  }
-
-  async addProductsToUserCard(userId: string, product: object) {
+  async addProductsToUserCard(userId: string, product: Product) {
     const userRef = doc(this.fs, 'users', userId);
     await setDoc(userRef, { products: arrayUnion(product) }, { merge: true });
   }

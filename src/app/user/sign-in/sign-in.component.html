@@ -1,14 +1,21 @@
 <h1 class="title">LogIn</h1>
 <div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formClass" >
-        <p>
-            <input type="text" placeholder="Email" formControlName="email"/>
-        </p>
-        <p>
-            <input type="password" placeholder="Password" formControlName="password"/>
-        </p>
-        <p >
-            <button class="submitBtn" type="submit" [disabled]="!form.valid">Submit</button>
-        </p>
-    </form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formClass">
+    <p>
+      <input type="text" placeholder="Email" formControlName="email" />
+    </p>
+    <p>
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+    </p>
+    <p>
+      <button class="submitBtn" type="submit" [disabled]="!form.valid">
+        Submit
+      </button>
+      <a (click)="resetPassword()">Forgot Password?</a>
+    </p>
+  </form>
 </div>

@@ -14,15 +14,12 @@ import { User } from '../types/user';
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
-
-
   user: User | undefined;
 
   isLoggedInUser = false;
 
-  getCurrentUser(){
+  getCurrentUser() {
     let user = JSON.parse(localStorage.getItem('user') || '');
 
     return user;
@@ -37,7 +34,6 @@ export class AuthService {
     public ngZone: NgZone,
     public router: Router
   ) {
-
     try {
       const lsUser = localStorage.getItem('user') || '';
 
@@ -45,16 +41,16 @@ export class AuthService {
     } catch (error) {
       this.user = undefined;
     }
-
-   
-  } 
+  }
 
   SignIn(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
-        this.SetUserData(result.user)
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.SetUserData(result.user);
         this.loggedIn.next(true);
-      
-        localStorage.setItem('user', (JSON.stringify(result.user)));
+
+        localStorage.setItem('user', JSON.stringify(result.user));
         this.isLoggedInUser = true;
 
         this.router.navigate(['/']);
@@ -68,8 +64,8 @@ export class AuthService {
       .catch((error) => {
         window.alert(error.message);
       });
-  } 
-  
+  }
+
   // Sign up with email/password & Send email verfificaiton when new user sign up
   SignUp(email: string, password: string) {
     return this.afAuth
@@ -81,7 +77,7 @@ export class AuthService {
       .catch((error) => {
         window.alert(error.message);
       });
-  } 
+  }
 
   SendVerificationMail() {
     return this.afAuth.currentUser
@@ -91,7 +87,7 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['verify-email-address']);
       });
-  } // Reset Forggot password
+  }
 
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth
@@ -110,7 +106,7 @@ export class AuthService {
   get isLogged(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
 
-   return user !== null  ? true : false;
+    return user !== null ? true : false;
   } // Sign in with Google
 
   GoogleAuth() {
@@ -140,7 +136,6 @@ export class AuthService {
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
 
   SetUserData(user: any) {
-    console.log(user);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -157,8 +152,6 @@ export class AuthService {
       emailVerified: user.emailVerified,
     };
 
-  
-
     return userRef.set(userData, {
       merge: true,
     });
@@ -169,7 +162,6 @@ export class AuthService {
       localStorage.removeItem('user');
 
       this.loginStatusChange();
-      console.log('Logout')
       this.router.navigate(['/']);
     });
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { Product } from 'src/app/types/product';
 
 @Component({
   selector: 'app-product-editor',
@@ -22,8 +23,10 @@ export class ProductEditorComponent {
       productName: this.productForm.value.productName,
       price: Number(this.productForm.value.price),
       category: this.productForm.value.category,
-    });
+    }).subscribe((value) => {
+      console.log(value);
+    })
 
-    this.productForm.patchValue({productName: '', price: '', category: ''});
+    this.productForm.patchValue({ productName: '', price: '', category: '' });
   }
 }
