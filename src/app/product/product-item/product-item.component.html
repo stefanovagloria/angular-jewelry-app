@@ -1,5 +1,6 @@
 <article class="box">
-  <button
+  <ng-container *ngIf="isLoggedIn">
+    <button
     (click)="
       addToShoppingCard(
         item.id,
@@ -11,6 +12,7 @@
   >
     BUY
   </button>
+  </ng-container>
   <a [routerLink]="['/products', 'detail', item.id]">
     <div class="img-box">
       <img

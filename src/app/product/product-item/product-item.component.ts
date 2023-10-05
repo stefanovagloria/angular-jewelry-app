@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+
 import { Product } from 'src/app/types/product';
 
 @Component({
@@ -8,13 +9,21 @@ import { Product } from 'src/app/types/product';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css'],
 })
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit{
+  @Input() item: Product;
 
-  @Input() item?: any;
+  isLoggedIn: boolean;
 
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService
+  ) {}
 
-  constructor(private authService: AuthService, private apiService: ApiService){}
-
+  ngOnInit(): void {
+    this.authService.loggedIn.subscribe((value) => {
+      this.isLoggedIn = value;
+    })
+  }
 
   addToShoppingCard(
     id: string,
@@ -22,13 +31,12 @@ export class ProductItemComponent {
     price: number,
     category: string
   ) {
-    console.log(id, productName, price, category);
     let user = this.authService.getCurrentUser();
-
-    console.log(user.uid)
-
-    this.apiService.addProductsToUserCard(user.uid, {id, productName, price, category} as Product)
-
-   
+    this.apiService.addProductsToUserCard(user.uid, {
+      id,
+      productName,
+      price,
+      category,
+    } as Product);
   }
 }

@@ -10,18 +10,18 @@ import { Product } from 'src/app/types/product';
 })
 export class ProductsListComponent implements OnInit {
   isDataLoaded: boolean = false;
-  products?: Product[];
+  products: Product[];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    console.log('PorductsListComponent invoked')
     this.loadProducts();
   }
 
   loadProducts() {
     this.apiService.getProducts().subscribe((value) => {
       this.products = value;
-      console.log(this.products)
       this.isDataLoaded = true;
     });
   }

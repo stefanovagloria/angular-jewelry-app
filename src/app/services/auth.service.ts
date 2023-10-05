@@ -15,7 +15,6 @@ import { User } from '../types/user';
   providedIn: 'root',
 })
 export class AuthService {
-  user: User | undefined;
 
   getCurrentUser() {
     let user = JSON.parse(localStorage.getItem('user') || '');
@@ -23,7 +22,7 @@ export class AuthService {
     return user;
   }
 
-  private loggedIn: Subject<boolean> = new BehaviorSubject<boolean>(true);
+ loggedIn: Subject<boolean> = new BehaviorSubject<boolean>(true);
   userData: any;
 
   constructor(
@@ -81,9 +80,7 @@ export class AuthService {
 
   SendVerificationMail() {
     return this.afAuth.currentUser
-
       .then((u: any) => u.sendEmailVerification())
-
       .then(() => {
         this.router.navigate(['verify-email-address']);
       });
@@ -91,23 +88,15 @@ export class AuthService {
 
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth
-
       .sendPasswordResetEmail(passwordResetEmail)
-
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
       })
-
       .catch((error) => {
         window.alert(error);
       });
   } // Returns true when user is looged in and email is verified
-
-  get isLogged(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-
-    return user !== null ? true : false;
-  } // Sign in with Google
+ // Sign in with Google
 
   GoogleAuth() {
     return this.AuthLogin(new GoogleAuthProvider()).then((res: any) => {
@@ -162,12 +151,8 @@ export class AuthService {
       localStorage.removeItem('user');
 
       this.loggedIn.next(false);
-      this.loginStatusChange();
       this.router.navigate(['/']);
     });
   }
 
-  loginStatusChange(): Observable<boolean> {
-    return this.loggedIn.asObservable();
-  }
 }
