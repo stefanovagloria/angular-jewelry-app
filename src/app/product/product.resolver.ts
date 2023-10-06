@@ -15,6 +15,7 @@ export class ProductResolver implements Resolve<Product> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
+ 
    return this.apiService.getProductById(route.params['id']);
   }
 }

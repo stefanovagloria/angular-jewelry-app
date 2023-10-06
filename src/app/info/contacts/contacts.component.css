@@ -1,35 +1,42 @@
-div{
+div {
     display: flex;
     justify-content: center;
-}
-
-form {
-
-    width: 250px;
-    text-align: right;
-}
-
-input{
-   display: block;
-   text-align: 'left';
-   width: 300px;
-   padding: 15px;
-   margin: 15px;
-}
-
-.title {
-    text-align: left;
-    margin-left: 30px;
-}
-
-div {
+    text-align: center;
     border: 1px solid gainsboro;
     margin: 30px;
     padding-bottom: 40px;
 }
 
-p {
-    margin-left: 10px;
+input{
+    display: block;
+    text-align: left;
+    width: 300px;
+    padding: 15px;
+    margin: 15px;
+}
+
+ .title {
+    text-align: center;
+    margin-left: 30px;
+}
+
+input {
+    display: block;
+    text-align: 'left';
+   width: 300px;
+   padding: 15px;
+   margin: 15px;
+}
+
+.loginForm label {
+    font-weight: bold;
+}
+
+.loginForm input {
+    padding: 7px;
+    margin-top: 4px;
+    border: solid 1px;
+    border-radius: 0.7em;
 }
 
 button {
@@ -40,3 +47,8 @@ button {
     font-size: larger;
     background-color: rgb(188, 158, 113);
 }
+
+a {
+    padding: 10px;
+}
+

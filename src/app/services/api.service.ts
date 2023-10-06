@@ -29,7 +29,7 @@ export class ApiService {
     );
   }
 
-  getProducts():Observable<Product[]> {
+  getProducts(): Observable<Product[]> {
     return this.http
       .get<{ [id: string]: Product }>(
         'https://jewelry-app-550f2-default-rtdb.firebaseio.com/products.json'
@@ -37,20 +37,20 @@ export class ApiService {
       .pipe(
         map((productsAsJson) => {
           let products: Product[] = [];
+          console.log(productsAsJson);
 
           for (let id in productsAsJson) {
             products.push({ ...productsAsJson[id], id });
           }
 
+          console.log(products);
           return products;
         })
       );
   }
 
-  getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(
-      `https://jewelry-app-550f2-default-rtdb.firebaseio.com/products/${id}.json`
-    );
+  async getProductById(id: string) {
+   
   }
 
   updateProduct(

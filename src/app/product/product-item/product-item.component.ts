@@ -23,6 +23,8 @@ export class ProductItemComponent implements OnInit{
     this.authService.loggedIn.subscribe((value) => {
       this.isLoggedIn = value;
     })
+
+    console.log(this.item.id)
   }
 
   addToShoppingCard(
@@ -31,6 +33,8 @@ export class ProductItemComponent implements OnInit{
     price: number,
     category: string
   ) {
+
+    console.log(id)
     let user = this.authService.getCurrentUser();
     this.apiService.addProductsToUserCard(user.uid, {
       id,

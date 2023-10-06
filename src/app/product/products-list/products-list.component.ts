@@ -17,12 +17,16 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     console.log('PorductsListComponent invoked')
     this.loadProducts();
+    
   }
 
   loadProducts() {
     this.apiService.getProducts().subscribe((value) => {
       this.products = value;
+      console.log(this.products)
       this.isDataLoaded = true;
     });
+
+
   }
 }
