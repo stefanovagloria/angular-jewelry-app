@@ -37,13 +37,11 @@ export class ApiService {
       .pipe(
         map((productsAsJson) => {
           let products: Product[] = [];
-          console.log(productsAsJson);
 
           for (let id in productsAsJson) {
             products.push({ ...productsAsJson[id], id });
           }
 
-          console.log(products);
           return products;
         })
       );

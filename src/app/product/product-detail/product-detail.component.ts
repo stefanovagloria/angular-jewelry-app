@@ -19,7 +19,7 @@ export class ProductDetailComponent implements OnInit {
     this.activatedRoute.data.subscribe(
       ( product ) => (this.product = product)
     );
-    console.log(this.product);
+
 
   }
   addToShoppingCard(
