@@ -86,4 +86,10 @@ export class ApiService {
       products: userProducts,
     });
   }
+
+  postMessage(data: object){
+    return this.http.post(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/messages.json`, data)
+  }
 }
+
+

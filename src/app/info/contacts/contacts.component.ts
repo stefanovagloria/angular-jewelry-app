@@ -1,19 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css']
+  styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent {
-
   contactForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
     phone: new FormControl(''),
-    message: new FormControl('')
-  })
+    message: new FormControl(''),
+  });
 
- 
+  constructor(
+    private apiService: ApiService,
+    private authService: AuthService
+  ) {}
+
+  sendMessage() {
+    let currentUser = this.authService.getCurrentUser();
+    let data = {
+      name: this.contactForm.value.name,
+      email: this.contactForm.value.email,
+      phone: this.contactForm.value.phone,
+      message: this.contactForm.value.message,
+      userId: currentUser.uid,
+      status: 'Unread',
+    };
+    
+    this.apiService.postMessage(data).subscribe((response) =>{
+      console.log(response);
+    });
+  }
 }
