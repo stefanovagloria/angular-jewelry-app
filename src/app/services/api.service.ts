@@ -47,8 +47,9 @@ export class ApiService {
       );
   }
 
-  async getProductById(id: string) {
-   
+   getProductById(id: string) {
+  
+   return this.http.get(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/${id}.json`)
   }
 
   updateProduct(
@@ -90,6 +91,8 @@ export class ApiService {
   postMessage(data: object){
     return this.http.post(`https://jewelry-app-550f2-default-rtdb.firebaseio.com/messages.json`, data)
   }
+
+
 }
 
 

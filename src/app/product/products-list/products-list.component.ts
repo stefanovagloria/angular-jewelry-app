@@ -26,7 +26,9 @@ export class ProductsListComponent implements OnInit {
       
       this.isDataLoaded = true;
     });
+  }
 
-
+  addItem(isNewItemAdded: boolean) {
+    this.loadProducts();
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
@@ -10,6 +10,8 @@ import { Product } from 'src/app/types/product';
   styleUrls: ['./product-editor.component.css'],
 })
 export class ProductEditorComponent {
+  @Output() newProductEvent = new EventEmitter<boolean>();
+
   constructor(private apiService: ApiService) {}
 
   productForm = new FormGroup({
@@ -19,13 +21,20 @@ export class ProductEditorComponent {
   });
 
   onSubmit() {
-    this.apiService.addProduct({
+    let newProduct = {
       productName: this.productForm.value.productName,
       price: Number(this.productForm.value.price),
       category: this.productForm.value.category,
-    }).subscribe((value) => {
-      console.log(value);
-    })
+    };
+
+    this.apiService
+      .addProduct({
+        newProduct,
+      })
+      .subscribe((value) => {
+        console.log(value);
+        this.newProductEvent.emit(true);
+      });
 
     this.productForm.patchValue({ productName: '', price: '', category: '' });
   }
