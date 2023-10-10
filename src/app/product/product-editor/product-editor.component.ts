@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
-import { Product } from 'src/app/types/product';
 
 @Component({
   selector: 'app-product-editor',
@@ -32,7 +31,6 @@ export class ProductEditorComponent {
         newProduct,
       })
       .subscribe((value) => {
-        console.log(value);
         this.newProductEvent.emit(true);
       });
 

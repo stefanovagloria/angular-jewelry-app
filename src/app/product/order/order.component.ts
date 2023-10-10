@@ -19,7 +19,6 @@ export class OrderComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    console.log(this.userProducts)
     this.getOrderedProducts();
   }
 

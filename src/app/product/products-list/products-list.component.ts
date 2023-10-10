@@ -15,15 +15,13 @@ export class ProductsListComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    console.log('PorductsListComponent invoked')
     this.loadProducts();
-    
   }
 
   loadProducts() {
     this.apiService.getProducts().subscribe((value) => {
       this.products = value;
-      
+
       this.isDataLoaded = true;
     });
   }
