@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,20 +9,22 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent {
-  contactForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    message: new FormControl(''),
+  contactForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: ['', Validators.required],
+    message: ['', Validators.required],
   });
 
   constructor(
     private apiService: ApiService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder
   ) {}
 
   sendMessage() {
     let currentUser = this.authService.getCurrentUser();
+
     let data = {
       name: this.contactForm.value.name,
       email: this.contactForm.value.email,
@@ -31,9 +33,9 @@ export class ContactsComponent {
       userId: currentUser.uid,
       status: 'Unread',
     };
-    
+
     this.apiService.postMessage(data).subscribe((response) =>{
-      console.log(response);
+      this.contactForm.reset();
     });
   }
 }

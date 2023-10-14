@@ -17,6 +17,6 @@
       placeholder="Message"
       formControlName="message"
     />
-    <button (click)="sendMessage()">SEND</button>
+    <button [disabled]="!contactForm" (click)="sendMessage()">SEND</button>
   </form>
 </div>
