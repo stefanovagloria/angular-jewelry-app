@@ -17,6 +17,12 @@
       placeholder="Message"
       formControlName="message"
     />
-    <button [disabled]="!contactForm" (click)="sendMessage()">SEND</button>
+    <ng-container *ngIf="!isLoggedIn">
+      <button>Go to Login Page..</button>
+    </ng-container>
+    <ng-container *ngIf="isLoggedIn">
+      <button [disabled]="!contactForm" (click)="sendMessage()">SEND</button>
+    </ng-container>
+    
   </form>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,7 +8,9 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.css'],
 })
-export class ContactsComponent {
+export class ContactsComponent implements OnInit {
+  isLoggedIn: boolean;
+
   contactForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', Validators.required],
@@ -22,9 +24,15 @@ export class ContactsComponent {
     private formBuilder: FormBuilder
   ) {}
 
+  ngOnInit(): void {
+    this.authService.loggedIn.subscribe((value) => {
+      console.log(value)
+      this.isLoggedIn = value;
+    })
+  }
+
   sendMessage() {
     let currentUser = this.authService.getCurrentUser();
-
     let data = {
       name: this.contactForm.value.name,
       email: this.contactForm.value.email,
@@ -34,7 +42,7 @@ export class ContactsComponent {
       status: 'Unread',
     };
 
-    this.apiService.postMessage(data).subscribe((response) =>{
+    this.apiService.postMessage(data).subscribe((response) => {
       this.contactForm.reset();
     });
   }
