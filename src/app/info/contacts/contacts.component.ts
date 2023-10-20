@@ -25,6 +25,7 @@ export class ContactsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  
     this.authService.loggedIn.subscribe((value) => {
       console.log(value)
       this.isLoggedIn = value;

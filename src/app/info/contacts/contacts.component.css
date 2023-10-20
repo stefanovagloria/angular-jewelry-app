@@ -48,6 +48,12 @@ button {
     background-color: rgb(188, 158, 113);
 }
 
+button:hover {
+    cursor: pointer;
+    color: rgb(188, 158, 113);
+    background-color: white;
+}
+
 a {
     padding: 10px;
 }
