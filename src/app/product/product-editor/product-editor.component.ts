@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -11,24 +16,29 @@ import { ApiService } from '../../services/api.service';
 export class ProductEditorComponent {
   @Output() newProductEvent = new EventEmitter<boolean>();
 
-  constructor(private apiService: ApiService) {}
+  formIsInvalid: boolean = false;
 
-  productForm = new FormGroup({
-    productName: new FormControl(''),
-    price: new FormControl(''),
-    category: new FormControl(''),
+  constructor(
+    private apiService: ApiService,
+    private formBuilder: FormBuilder
+  ) {}
+
+  productForm = this.formBuilder.group({
+    productName: ['', Validators.required],
+    price: ['', Validators.required],
+    category: ['', Validators.required],
   });
 
   onSubmit() {
-    let newProduct = {
-      productName: this.productForm.value.productName,
-      price: Number(this.productForm.value.price),
-      category: this.productForm.value.category,
-    };
+    if (this.productForm.status === 'INVALID') {
+        this.formIsInvalid = true;
+      return;
+    }
+    this.formIsInvalid = false;
 
     this.apiService
       .addProduct({
-        newProduct,
+        ...this.productForm.value,
       })
       .subscribe((value) => {
         this.newProductEvent.emit(true);

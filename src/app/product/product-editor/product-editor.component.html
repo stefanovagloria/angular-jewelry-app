@@ -17,6 +17,9 @@
       formControlName="category"
     />
 
+    <ng-container *ngIf="formIsInvalid">
+      <p>All fields are required!</p>
+    </ng-container>
     <button type="submit">SEND</button>
   </form>
 </div>
